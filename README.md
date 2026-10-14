@@ -2,11 +2,10 @@
 
 **Full Stack Developer · DevOps** — Ciudad Juárez, México
 
-I build platforms that go into production, and then I make them observable. Right now I'm the
-only developer behind an institutional platform that has grown to seven applications on a single
-FastAPI monolith, plus the graduate-studies platform next to it — and I run the Prometheus /
-Loki / Tempo / Grafana stack that watches both. Competitive programmer: 2× ICPC Mexico Finals,
-2× state champion.
+I'm the only developer on the platform at ITCJ: seven apps on one FastAPI monolith, plus SIIAP,
+the graduate-studies platform next to it. I also set up and run the monitoring for both —
+Prometheus, Loki, Tempo and Grafana. Before that I did the same for a server fleet at Terabytio.
+Two ICPC Mexico Finals with the institute's team.
 
 [![Portfolio](https://img.shields.io/badge/Portfolio-erne1357.me-00f5d4?style=flat-square&logo=firefox-browser&logoColor=white)](https://erne1357.me)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ernesto-villarreal-ibarra-49a443337/)
@@ -18,24 +17,23 @@ Loki / Tempo / Grafana stack that watches both. Competitive programmer: 2× ICPC
 
 **Developer (Honorarios) · ITCJ — Instituto Tecnológico de Ciudad Juárez** · Aug 2025 – Present
 
-Sole developer of the institute's digital platform: a modular FastAPI monolith where seven
-applications — help desk, course add/drop scheduling, maintenance, graduation, directory,
-donations and a shared inventory core — live behind one JWT auth core and a role-centric
-authorization backbone. Zero-downtime blue-green deploys, PgBouncer pooling, multi-worker
-Socket.IO over Redis, 96 Alembic revisions and a CI gate over a 455-file pytest suite.
+Seven apps in one FastAPI monolith — help desk, course add/drop scheduling, maintenance,
+graduation, directory, donations and a shared inventory — all behind the same login and the same
+permission system, over ~127 tables. Deploys are blue-green with no downtime, PgBouncer sits in
+front of Postgres, Socket.IO runs across workers over Redis, and CI runs a 455-file pytest suite.
 
-I also own the observability side: the application exports its own RED metrics, saturation
-signals and presence data, emits OpenTelemetry traces, and writes JSON logs carrying `trace_id`
-so a slow request can be followed from a log line straight into its span.
+I also wrote the instrumentation inside the app: requests and error rate per app, how full the
+database pool and the threadpools are, event-loop lag, and OpenTelemetry traces whose `trace_id`
+is printed in the logs, so from a log line you can jump to the trace of that exact request.
 
 **Full Stack Developer · DevOps · Terabytio** · Apr 2026 – Aug 2026
 
-Joined a startup team as a full stack developer and took over the infrastructure and
-observability side of the business; in the final stretch the team recognized me as its DevOps.
-Built the internal operations panel (Laravel 13 · Filament 5 · Livewire 4) that became the
-source of truth for infrastructure, recurring cost and product attribution, and designed
-fleet-wide observability where every host pushes metrics and logs over a private tailnet — no
-host exposing a new port to the internet.
+I joined as a full stack developer and ended up taking the infrastructure and the monitoring; for
+the last month and a half the team treated me as the DevOps. I built the internal ops panel
+(Laravel 13, Filament 5, Livewire 4) that replaced the spreadsheets where servers, costs,
+products and clients were tracked, and set up monitoring for the whole fleet: an agent on each
+host pushing metrics and logs through a private network, so no host had to open a port to the
+internet.
 
 ---
 
@@ -43,32 +41,32 @@ host exposing a new port to the internet.
 
 | Project | What it is | Stack |
 |---|---|---|
-| **[ITCJ Platform](https://github.com/Erne1357/itcj)** | Institutional platform: 7 apps in one modular monolith behind a shared auth core. 838 routes, 127 tables, 455 test files. | FastAPI · SQLAlchemy 2.0 · PostgreSQL · PgBouncer · Redis · Socket.IO · Celery · Docker |
-| **[SIIAP](https://github.com/Erne1357/SIIAP)** | Full graduate student lifecycle — admission → permanence → graduation — with committee deliberation, document review workflows and granular delegable permissions. | Flask · PostgreSQL · Celery · Redis · Socket.IO · Docker · GitHub Actions |
-| **Observability Stack** *(private)* | Metrics, logs and traces for the server shared by both platforms: 12 services, 37 alert rules, 3 dashboards, tail sampling, log↔trace correlation. | Prometheus · Loki · Tempo · Grafana · Alloy · OpenTelemetry |
-| **Ops Panel** *(private, internal)* | Infrastructure inventory, multi-currency recurring cost, a credential vault that stores references instead of secrets, and live fleet observability inside the app. | Laravel 13 · Filament 5 · Livewire 4 · PostgreSQL 17 · Redis 7 · Tailscale |
-| **[DeferAplication](https://github.com/Erne1357/deferAplication)** | Desktop business management system for a private client: multi-variant inventory, production recipes, credit sales, PDF reports. | C# · .NET 6 · WinForms · PostgreSQL |
-| **[Portfolio](https://github.com/Erne1357/portfolio)** | This profile's companion site — bilingual, API-driven, deployed behind Nginx with Let's Encrypt. | React · TypeScript · Vite · FastAPI · Docker |
+| **[ITCJ Platform](https://github.com/Erne1357/itcj)** | Seven apps in one modular monolith behind a shared login. 838 routes, 127 tables, 455 test files. | FastAPI · SQLAlchemy 2.0 · PostgreSQL · PgBouncer · Redis · Socket.IO · Celery · Docker |
+| **[SIIAP](https://github.com/Erne1357/SIIAP)** | Admission, permanence and graduation for the graduate programs: document review, committee voting, delegable permissions. | Flask · PostgreSQL · Celery · Redis · Socket.IO · Docker · GitHub Actions |
+| **Monitoring stack** *(private)* | Metrics, logs and traces for the server ITCJ and SIIAP share: 12 services, 37 alert rules, 3 dashboards, tail sampling, log↔trace correlation. | Prometheus · Loki · Tempo · Grafana · Alloy · OpenTelemetry |
+| **Ops panel** *(private, internal)* | Servers, domains, storage and what each one costs per month, an access vault that stores references instead of passwords, and live host metrics inside the app. | Laravel 13 · Filament 5 · Livewire 4 · PostgreSQL 17 · Redis 7 · Tailscale |
+| **[DeferAplication](https://github.com/Erne1357/deferAplication)** | Desktop system for a private client: multi-variant inventory, production recipes, credit sales, PDF reports. | C# · .NET 6 · WinForms · PostgreSQL |
+| **[Portfolio](https://github.com/Erne1357/portfolio)** | The site behind this profile — bilingual, API-driven, behind Nginx with Let's Encrypt. | React · TypeScript · Vite · FastAPI · Docker |
 
 ---
 
-## Observability, specifically
+## On the monitoring side
 
-The part of my work that is hardest to see from a repo list, so here it is:
+This is the part a repo list doesn't show, so here it is:
 
-- **Instrumenting applications, not just hosts.** RED metrics per app, top routes by p95 and by
-  volume, and saturation signals that name the culprit — anyio and asyncio threadpools, DB pool,
-  event-loop lag — instead of a CPU graph that only says "something is slow".
-- **Distributed tracing with honest sampling.** Tail sampling keeps the slow and the failed
-  traces plus a probabilistic baseline, and the decision windows are documented so a
-  *trace not found* reads as expected behaviour rather than an outage.
-- **Correlation that actually works.** `trace_id` travels in the JSON logs, so Loki jumps to
-  Tempo and back; async tasks are traced as their own traces with span links to the request
-  that enqueued them.
-- **Alerts you can trust.** Prometheus rules covered by `promtool` unit tests, dashboards linted
-  in CI, and deploys that run preflight → apply → smoke with automatic rollback.
-- **Private by default.** Fleet agents push over a private tailnet; the stack binds to localhost
-  and is reached over an SSH tunnel instead of putting one more Grafana on the internet.
+- **Metrics inside the app, not only on the host.** Requests and error rate per app, the routes
+  with the worst p95, and saturation signals that say which pool is full — threadpools, database
+  pool, event-loop lag — instead of a CPU graph that only says something is slow.
+- **Traces with sampling that admits what it drops.** The slow and the failed traces are kept
+  plus a small baseline of the rest; the decision windows are written down, so a *trace not
+  found* reads as expected and not as an outage.
+- **Logs and traces that point at each other.** `trace_id` goes into the JSON logs, so Loki jumps
+  to Tempo and back. Async tasks are their own traces, linked to the request that queued them.
+- **Alerts that are tested.** The Prometheus rules have unit tests, the dashboards are checked in
+  CI, and the deploy runs preflight, apply and smoke tests, rolling back on its own if smoke
+  fails.
+- **Nothing published.** Agents push over a private network; the stack binds to localhost and you
+  reach it over an SSH tunnel instead of putting one more Grafana on the internet.
 
 ---
 
@@ -88,7 +86,7 @@ The part of my work that is hardest to see from a repo list, so here it is:
 ![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy_2.0-D71F00?style=flat-square&logo=sqlalchemy&logoColor=white)
 ![PgBouncer](https://img.shields.io/badge/PgBouncer-2D3A4A?style=flat-square)
 
-**Observability & DevOps**
+**Monitoring & DevOps**
 ![Prometheus](https://img.shields.io/badge/Prometheus-E6522C?style=flat-square&logo=prometheus&logoColor=white)
 ![Grafana](https://img.shields.io/badge/Grafana-F46800?style=flat-square&logo=grafana&logoColor=white)
 ![Loki](https://img.shields.io/badge/Loki-F5A800?style=flat-square&logo=grafana&logoColor=white)
@@ -117,8 +115,8 @@ The part of my work that is hardest to see from a repo list, so here it is:
 | 🥇 1st place | interTecNM Chihuahua State Programming Contest | 2024 |
 | 🥇 1st place | interTecNM Chihuahua State Programming Contest | 2023 |
 
-Two consecutive ICPC Mexico Finals and back-to-back state titles. C++ is where I compete;
-Python is where I ship.
+Two ICPC Mexico Finals in a row and back-to-back state titles. I compete in C++ and ship in
+Python.
 
 ---
 
@@ -130,4 +128,4 @@ Python is where I ship.
 
 ---
 
-<sub>Coding since 2018 · Open to backend, platform and DevOps/SRE roles · Spanish (native) · English (professional)</sub>
+<sub>Programming since 2018 · Open to backend, platform and DevOps/SRE roles · Spanish (native) · English (professional)</sub>
